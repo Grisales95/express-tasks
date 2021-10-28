@@ -1,9 +1,11 @@
-const express = require('express');
-const { errorHandler } = require('./middlewares/error.middleware');
-const taskRouters = require('./routes/tasks.routers');
+const express = require("express");
+const { errorHandler } = require("./middlewares/error.middleware");
+const taskRouters = require("./routes/tasks.routers");
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
+app.use(morgan("dev"));
 
 app.use(taskRouters);
 
