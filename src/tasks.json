@@ -1,1 +1,12 @@
-[{"id":"2tsr6edskvb8xbbb","tittle":"Jugar dark souls","description":"rescatarme dark souls III"},{"id":"2tsr6f94kvb8xyh3","tittle":"Hacer aseo","description":"barrer mi habitacion"}]
+[
+  {
+    "id": "2tsr6edskvb8xbbb",
+    "tittle": "Jugar dark souls",
+    "description": "rescatarme dark souls III"
+  },
+  {
+    "id": "2tsr6f94kvb8xyh3",
+    "tittle": "arreglar pc",
+    "description": "formatear pc por que esta muy lenta"
+  }
+]

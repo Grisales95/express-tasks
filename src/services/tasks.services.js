@@ -1,25 +1,25 @@
-const fs = require("fs/promises");
-const path = require("path");
-const { nextTick } = require("process");
-const uniqid = require("uniqid");
+const fs = require('fs/promises');
+const path = require('path');
+const { nextTick } = require('process');
+const uniqid = require('uniqid');
 
-const taskPath = path.resolve(__dirname, "..", "tasks.json");
+const taskPath = path.resolve(__dirname, '..', 'tasks.json');
 
 const getAlltasks = async () => {
   try {
-    const tasks = await fs.readFile(taskPath, "utf8");
+    const tasks = await fs.readFile(taskPath, 'utf8');
     return JSON.parse(tasks);
   } catch (error) {
-    next(error);
+    throw error;
   }
 };
 
 const getTasksById = async () => {
   try {
-    const tasksID = await fs.readFile(taskPath, "utf8");
+    const tasksID = await fs.readFile(taskPath, 'utf8');
     return JSON.parse(tasksID);
   } catch (error) {
-    console.log(err);
+    throw error;
   }
 };
 
@@ -35,7 +35,23 @@ const addTasks = async (taskObj) => {
     await fs.writeFile(taskPath, JSON.stringify(tasks));
     return taskObj;
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+const putTask = async (id, task) => {
+  try {
+    const tasks = await getAlltasks();
+    let taskIndex = tasks.findIndex((e) => e.id === id);
+    let updateTask = {
+      ...tasks[taskIndex],
+      ...task,
+    };
+    tasks[taskIndex] = updateTask;
+    await fs.writeFile(taskPath, JSON.stringify(tasks));
+    return updateTask;
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -55,4 +71,5 @@ module.exports = {
   getTasksById,
   addTasks,
   deleteTask,
+  putTask,
 };
